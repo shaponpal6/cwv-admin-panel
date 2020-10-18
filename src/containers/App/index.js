@@ -1,67 +1,56 @@
-import React, { useEffect } from "react";
+import React, { memo, PureComponent } from "react";
 import { connect } from "react-redux";
-
 import { setMenuState } from "../../redux/actions";
-// import { APP_ROUTE } from "../../constants";
 import { Menu, Row, Col } from "antd";
-
-// import { AppContext } from "../../store";
-
 import Dashboard from '../Dashboard';
 import ChatConsole from '../ChatConsole';
 import KnowledgeBase from '../KnowledgeBase';
-
-
 import 'antd/dist/antd.css';
 import "./style.css";
 
 
-
-const ChatApp = ({ chatRoute, setMenuState }) => {
-  const state = { chatRoute: "console" };
+class CWVAPPRoot extends PureComponent {
 
 
-  useEffect(function () {
-    console.log('state', state)
-  }, [state])
 
   // Chat Button Open / Close
-  const onMenuClick = (e) => {
+  onMenuClick = (e) => {
     console.log(e.key);
-    setMenuState(e.key);
+    this.props.setMenuState(e.key);
   };
 
-  return (
-    <div id="wpcwv-adminContainer">
 
-      <Row>
-        <Col flex="100px">Simple ChatApp</Col>
-        <Col flex="auto">
+  render() {
 
-          <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[chatRoute]}>
-            <Menu.Item key="dashboard" onClick={onMenuClick}>Dashboard</Menu.Item>
-            <Menu.Item key="console" onClick={onMenuClick}>Console</Menu.Item>
-            <Menu.Item key="knowledgebase" onClick={onMenuClick}>Knowledge Base</Menu.Item>
-          </Menu>
-        </Col>
-        <Col flex="100px">BTN</Col>
-      </Row>
+    console.log('props', this.props)
+    console.log('rrrrrr', this.props.chatRoute)
+    return (
+      <div id="wpcwv-adminContainer">
 
-      {chatRoute === "dashboard" && <Dashboard />}
-      {chatRoute === "console" && <ChatConsole />}
-      {chatRoute === "knowledgebase" && <KnowledgeBase />}
+        <Row>
+          <Col flex="100px">Simple ChatApp</Col>
+          <Col flex="auto">
 
-    </div>
-  );
-};
+            <Menu theme="dark" mode="horizontal" defaultSelectedKeys={[this.props.chatRoute]}>
+              <Menu.Item key="dashboard" onClick={this.onMenuClick}>Dashboard</Menu.Item>
+              <Menu.Item key="console" onClick={this.onMenuClick}>Console</Menu.Item>
+              <Menu.Item key="knowledgebase" onClick={this.onMenuClick}>Knowledge Base</Menu.Item>
+            </Menu>
+          </Col>
+          <Col flex="100px">BTN</Col>
+        </Row>
 
+        {this.props.chatRoute === "dashboard" && <Dashboard />}
+        {this.props.chatRoute === "console" && <ChatConsole />}
+        {this.props.chatRoute === "knowledgebase" && <KnowledgeBase />}
 
-const mapStateToProps = state => {
-  console.log(state)
-  return { chatRoute: state.menus.chatRoute };
-};
-// export default VisibilityFilters;
-export default connect(
-  mapStateToProps,
-  { setMenuState }
-)(ChatApp);
+      </div>
+    )
+  }
+}
+
+const mapStateToProps = (state) => ({
+  chatRoute: state.menus.chatRoute
+})
+
+export default connect(mapStateToProps, { setMenuState })(memo(CWVAPPRoot))

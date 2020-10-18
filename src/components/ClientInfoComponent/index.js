@@ -7,12 +7,10 @@ import './style.css'
 
 import MessageConponent from "../MessageConponent";
 
-function MessagesContainer({ firebase, clientUID }) {
-    // const clientData = useSelector((state) => state.chatConsole.clientData);
-    // const { messages, setMessages2 } = useState([]);
-    // const dispatch = useDispatch();
-
-
+function ClientInfoComponent({ firebase, clientUID }) {
+    // const { clientData, messages, clientId } = useSelector((state) => state.chatConsole);
+    // const { messages, setMessages } = useState([]);
+    const dispatch = useDispatch();
 
 
 
@@ -39,32 +37,29 @@ function MessagesContainer({ firebase, clientUID }) {
     // }, [loading])
 
     // Filter User
-    const filterClientData = (clientDataSnapshot) => {
+    const filterClientData = (clientData) => {
         let messages = [];
         let clientInfo = {};
         // if (loading) return [clientInfo, messages];
-        if (!clientDataSnapshot || clientDataSnapshot.data() === null || typeof clientDataSnapshot.data() !== 'object') {
+        if (!clientData || clientData.data() === null || typeof clientData.data() !== 'object') {
             return [clientInfo, messages]
         }
-        let data = clientDataSnapshot.data();
+        let data = clientData.data();
         if (data.messages !== null && Array.isArray(data.messages)) {
-            // setMessages2(data.messages)
             messages = data.messages;
             delete data.messages;
         }
-        // dispatch(setClientData(data));
         clientInfo = data;
-        return [clientInfo, clientInfo, messages];
+        return [clientInfo, messages];
     }
     const [clientInfo, messages] = filterClientData(_clientData);
-    //  filterClientData(_clientData);
 
 
     return (
         <div>
             <p>
                 {error && <strong>Error: {JSON.stringify(error)}</strong>}
-                {clientInfo && <strong>Info: {JSON.stringify(clientInfo)}</strong>}
+                {/* {clientInfo && <strong>Error: {JSON.stringify(clientInfo)}</strong>} */}
                 {loading && <span>Messages: Loading...</span>}
                 {/* {_clientData && <span>Document: {JSON.stringify(_clientData.data())}</span>} */}
                 {_clientData && <span>{console.log(_clientData.data())}</span>}
@@ -84,5 +79,5 @@ function MessagesContainer({ firebase, clientUID }) {
     )
 }
 
-export default withFirebase(MessagesContainer)
+export default withFirebase(ClientInfoComponent)
 

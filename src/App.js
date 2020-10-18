@@ -8,14 +8,7 @@ import Auth from "./containers/Auth";
 import "./App.css";
 
 function App({ firebase }) {
-  console.log("firebase", firebase);
   const [user, loading, error] = useAuthState(firebase.getAuth());
-  console.log(user, loading, error);
-
-  // const logout = () => {
-  //   firebase.auth().signOut();
-  // };
-
   if (loading) {
     return (
       <div>
@@ -32,13 +25,11 @@ function App({ firebase }) {
   }
   if (user) {
     return (
-      <div>
-        {/* <p>Current User: {user.email}</p> */}
-        {/* <button onClick={()=>firebase.doSignOut()}>Log out</button> */}
-        <Provider store={store}>
-          <AdminApp />
-        </Provider>
-      </div>
+
+      <Provider store={store}>
+        <AdminApp />
+      </Provider>
+
     );
   }
   return <Auth />;

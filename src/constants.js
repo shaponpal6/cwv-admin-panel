@@ -12,13 +12,14 @@ export const myChatTabs = [
     tab: "All",
   },
   {
-    key: "myChat",
-    tab: "My Chat",
+    key: "newChat",
+    tab: "New Chat",
   },
   {
-    key: "newClients",
-    tab: "New Clients",
+    key: "open",
+    tab: "Open",
   },
+
   {
     key: "visitors",
     tab: "Visitors",
