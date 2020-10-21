@@ -1,8 +1,10 @@
-import { TOGGLE_TODO, ADD_MESSAGE, SET_CLIENT_DATA, SET_MESSAGES, SET_CLIENTS_LIST, SET_CLIENT_ID } from "../actionTypes";
+import { TOGGLE_TODO, ADD_MESSAGE, SET_CLIENT_DATA, SET_MESSAGES, SET_CLIENTS_LIST, SET_CLIENT_ID, SET_SHORT_NOTES, SET_OPERATORS } from "../actionTypes";
 
 const initialState = {
-  clientId: "111",
+  clientId: "",
   clientData: {},
+  shortNots: {},
+  operators: {},
   onChatClientID: '',
   messages: [],
   clientsList: [],
@@ -26,6 +28,20 @@ export default function (state = initialState, action) {
       return {
         ...state,
         clientData: payload,
+      };
+    }
+    case SET_SHORT_NOTES: {
+      const payload = (typeof action.payload === 'object' && action.payload !== null) ? action.payload : {};
+      return {
+        ...state,
+        shortNots: payload,
+      };
+    }
+    case SET_OPERATORS: {
+      const payload = (typeof action.payload === 'object' && action.payload !== null) ? action.payload : {};
+      return {
+        ...state,
+        operators: payload,
       };
     }
     case SET_MESSAGES: {

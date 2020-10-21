@@ -8,6 +8,8 @@ import {
   SET_MESSAGES,
   SET_CLIENT_ID,
   SET_CLIENTS_LIST,
+  SET_SHORT_NOTES,
+  SET_OPERATORS,
   ADD_KNOWLEDGE,
 } from "./actionTypes";
 
@@ -53,6 +55,14 @@ export const setMessages = (message) => ({
 export const setClientID = (clientID) => ({
   type: SET_CLIENT_ID,
   payload: clientID,
+});
+export const setShortNotes = (notes) => ({
+  type: SET_SHORT_NOTES,
+  payload: notes,
+});
+export const setOperators = (operators) => ({
+  type: SET_OPERATORS,
+  payload: operators,
 });
 export const setClientsList = (content) => ({
   type: SET_CLIENTS_LIST,

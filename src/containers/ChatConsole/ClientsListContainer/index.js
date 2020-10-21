@@ -27,14 +27,10 @@ function ChatUsersList({ firebase }) {
      * 
      * For Archived read data from differents documeny
      */
-    const [myChatTabsState, setMyChatTabsState] = useState('');
+    const [myChatTabsState, setMyChatTabsState] = useState(myChatTabs[1].key);
+    // const [myChatList, filterChatUsersList] = useState({});
 
-    useEffect(() => {
-        setMyChatTabsState(myChatTabs[1].key)
-        return () => {
 
-        }
-    }, [])
 
     // myChatTabsState onChange Handeler
     const onMyChatTabChange = (key) => {
@@ -50,6 +46,7 @@ function ChatUsersList({ firebase }) {
         }
     );
 
+
     // On User Click
     const onChatUserClick = (uid) => {
         console.log('uid', uid)
@@ -58,7 +55,8 @@ function ChatUsersList({ firebase }) {
 
     // Filter User
     const chatUsersListHandler = (chatUsersList, type) => {
-        if (!chatUsersList.data()) return null;
+        console.log('chatUsersList1111', chatUsersList)
+        if (!chatUsersList.data()) return {};
         const clients = chatUsersList.data();
         if (typeof clients.users === 'object' && clients.users !== null) {
             if (type !== "all" && myChatTabs.map(a => a.key).includes(type)) {
@@ -75,17 +73,17 @@ function ChatUsersList({ firebase }) {
 
             return clients.users;
         }
-        return null;
+        return {};
     }
 
+
     return (
-
         <>
-
             <Card
                 style={{ width: "100%", height: "75vh" }}
                 bodyStyle={{ overflow: "auto", height: "100%", padding: "0" }}
                 tabList={myChatTabs}
+                loading={chatUsersListLoading}
                 activeTabKey={myChatTabsState}
                 tabBarExtraContent={<SettingOutlined key="setting" />}
                 onTabChange={(key) => onMyChatTabChange(key)}
@@ -97,11 +95,10 @@ function ChatUsersList({ firebase }) {
             >
 
                 {/* Todo */}
-                {chatUsersListError && message.error(JSON.stringify(chatUsersListError))}
-                {chatUsersListLoading && <Loading type="userList" />}
+                {/* {chatUsersListError && message.error(JSON.stringify(chatUsersListError))} */}
+                {/* {chatUsersListLoading && <Loading type="userList" />} */}
 
 
-                {message.success('Chat List Randered')}
 
                 <RSC className="wpcwv-clientListScrollbar" id="wpcwv-clientListScrollbar" style={{ width: "100%", height: "100%", padding: "10px" }} momentum={true} maximalThumbYSize={10} >
 
@@ -118,11 +115,7 @@ function ChatUsersList({ firebase }) {
                 </RSC>
 
             </Card>
-
-
         </>
-
-
     )
 }
 

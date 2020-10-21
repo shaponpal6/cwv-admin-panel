@@ -1,11 +1,12 @@
 const INITIAL = {
-	
+
   chatRoute: 'console',
   chatWidget: true,
   showWidget: true,
   welcomeBox: true,
-  isLogedIn: true, 
+  isLogedIn: true,
   chatButton: true,
+  clientId: '',
   operators: [
     { name: 'Shapon Pal', avater: '' },
     { name: 'Shapon Pal2', avater: '' },
@@ -16,7 +17,7 @@ const INITIAL = {
     chatWith: 'Chat With222',
     writeMessage: 'Write Message here..',
     startChat: 'Start Chat',
-  }, 
+  },
   messages: [
     {
       id: 'dkdxkd',

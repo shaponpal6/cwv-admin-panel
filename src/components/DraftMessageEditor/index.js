@@ -4,6 +4,7 @@ import { DownloadOutlined } from "@ant-design/icons";
 import { Editor, EditorState, ContentState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import "draft-js/dist/Draft.css";
+import "./style.css";
 
 function DraftMessageEditor({ onMessageSave }) {
   const [editorState, setEditorState] = React.useState(() =>
@@ -33,7 +34,7 @@ function DraftMessageEditor({ onMessageSave }) {
     const rowMessage = message.replace(/(<p[^>]+?>|<p>|<\/p>)/img, "");
     console.log(rowMessage);
     clearOnSubmit();
-    if(rowMessage !== "") onMessageSave(rowMessage);
+    if (rowMessage !== "") onMessageSave(rowMessage);
   };
 
   const styles = {
@@ -55,7 +56,7 @@ function DraftMessageEditor({ onMessageSave }) {
   };
 
   return (
-    <div>
+    <div className="wpcwv-messageContainer">
       <div style={styles.editor} onClick={focus}>
         <Editor
           editorState={editorState}

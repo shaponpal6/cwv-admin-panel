@@ -1,10 +1,11 @@
-import React, { useState } from 'react'
-// import { useDispatch, useSelector } from "react-redux";
+import React, { useState, memo } from 'react'
+import { connect } from "react-redux";
 import { Card } from "antd";
-// import { setClientData, setMessages } from "../../redux/actions";
-// import UserConponent from "../../components/UserConponent";
 import { myChatActions } from '../../constants'
-import { withFirebase } from "../../firebase";
+
+import ShortNotes from '../ShortNotes'
+import Operators from '../Operators'
+import ClientInfo from '../ClientInfo'
 import './style.css'
 
 import {
@@ -14,10 +15,21 @@ import {
 } from "@ant-design/icons";
 const { Meta } = Card;
 
+const TabSelector = ({ tab }) => {
+    console.log('tab', tab)
+
+    return (
+        <>
+            {tab === 'userDetails' && <ClientInfo />}
+            {tab === 'shortNotes' && <ShortNotes />}
+            {tab === 'chatOperators' && <Operators />}
+        </>
+    )
+}
 
 function ClientDetailsComponent() {
-    // const { clientData, clientId } = useSelector((state) => state.chatConsole);
-    // const dispatch = useDispatch();
+
+    console.log('ClientDetailsComponent>>>', '.....')
 
     /**
      * myChatActionsState Handeler
@@ -48,15 +60,29 @@ function ClientDetailsComponent() {
                 ]}
             >
                 {myChatActionState}
-                <Meta
+                <TabSelector tab={myChatActionState} />
 
-                    title="Card title"
-                    description="This is the description"
-                />
+                {/* <ClientInfo />
+                <ShortNotes />
+                <Operators /> */}
+
+
             </Card>
         </div>
     )
 }
 
-export default withFirebase(ClientDetailsComponent)
+const mapStateToProps = (state) => ({
+    clientData: state.chatConsole.clientData,
+    shortNotes: state.chatConsole.shortNotes,
+    operators: state.chatConsole.operators,
+})
+
+const mapDispatchToProps = {
+
+}
+
+// export default ClientDetailsComponent
+export default connect(mapStateToProps, mapDispatchToProps)((memo(ClientDetailsComponent)))
+// export default withFirebase(ClientDetailsComponent)
 
