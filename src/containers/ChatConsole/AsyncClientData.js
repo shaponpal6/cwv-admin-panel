@@ -44,16 +44,8 @@ export const AsyncClientData = ({ firebase, clientId }) => {
     }, [_clientData])
 
 
-
-
-
-    console.log('fire', firebase)
-    console.log('clientId Async', clientId)
-
     return (
-        <div>
-            Async data
-        </div>
+        <></>
     )
 }
 

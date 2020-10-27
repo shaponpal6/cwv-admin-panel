@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
 import { Editor, EditorState, ContentState, convertToRaw } from "draft-js";
 import draftToHtml from "draftjs-to-html";
 import "draft-js/dist/Draft.css";
@@ -65,15 +63,14 @@ function DraftMessageEditor({ onMessageSave }) {
         />
       </div>
       <div className="wpcwv-RichEditorSubmit">
-        <Button
+        <button
           type="button"
           shape="round"
           onClick={() => onMessageSaveHandler()}
-          icon={<DownloadOutlined />}
           size={"middle"}
         >
           SEND
-        </Button>
+        </button>
       </div>
     </div>
   );

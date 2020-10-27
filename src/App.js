@@ -5,7 +5,15 @@ import { withFirebase } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import AdminApp from "./containers/App";
 import Auth from "./containers/Auth";
-import "./App.css";
+
+// Style
+import "./utils/preset.css"
+import "./utils/button.css"
+import "./utils/popup.css"
+import "./utils/console.css"
+import "./utils/style.css"
+import "./utils/media.css"
+
 
 function App({ firebase }) {
   const [user, loading, error] = useAuthState(firebase.getAuth());

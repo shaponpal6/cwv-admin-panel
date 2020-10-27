@@ -1,45 +1,27 @@
 import React from 'react'
-// import PropTypes from 'prop-types'
-import { Avatar } from "antd";
 
-import "./style.css";
+// import "./style.css";
 
 
 
 
 function UserComponent({ user, onClick }) {
   return (
-    <div className="wpcwv-clientList" onClick={onClick}>
-      <div className="wpcwv-cardAvatar">
-        <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
-      </div>
-      <div className="wpcwv-cardDetail">
-        <div className="wpcwv-cardDetailTop">
-          <div className="wpcwv-clientName wpcwv-textEllipsis">{user[1].name ?? 'Anonymous'}</div>
-          <div className="wpcwv-clientSeen wpcwv-textEllipsis">11 mins ago</div>
-        </div>
-        <div className="wpcwv-cardDetailBottom">
-          <div className="wpcwv-clientMessage wpcwv-textEllipsis">This is message</div>
-          <div className="wpcwv-clientStatus">online</div>
+    <li className="cwv-clientRow cwv-clientRowActive" role="button" aria-disabled="false" onClick={onClick}>
+      <div className="cwv-listAvatarWraper">
+        <div className="cwv-listAvatar">
+          <img alt="Jim Doe" src="https://randomuser.me/api/portraits/men/40.jpg"
+            className="cwv-listAvatarImg" />
         </div>
       </div>
-    </div>
+      <div className="cwv-listUserWraper"><span className="cwv-listUserName">{user[1].name ?? 'Anonymous'}</span>
+        <p className="cwv-listUserMessage">
+          System Engineer</p>
+      </div>
+      <span className="cwv-touchRipple"></span>
+    </li>
   )
 }
-
-// UserComponent.propTypes = {
-//     user: PropTypes.shape({
-//         uid: PropTypes.string.isRequired,
-//         name: PropTypes.string.isRequired,
-//         type: PropTypes.oneOf(['admin', 'client']).isRequired,
-//         status: PropTypes.number.isRequired,
-//         senderID: PropTypes.string.isRequired,
-//         name: PropTypes.string.isRequired,
-//         photoURL: PropTypes.string.isRequired,
-//         time: PropTypes.any.isRequired,
-//       })
-
-// }
 
 export default UserComponent
 

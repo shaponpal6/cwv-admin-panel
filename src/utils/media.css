@@ -1,0 +1,23 @@
+@media (min-width: 0px) and (orientation: landscape){
+.cwv-logoWraper {
+    min-height: 48px;
+}
+}
+@media (min-width: 600px){
+.cwv-logoWraper {
+    min-height: 64px;
+}
+.cwv-consoleLeft {
+    width: 25%;
+}
+.cwv-userMessagesContainer {
+    width: 75%;
+}
+.cwv-console, .cwv-consoleLeft, .cwv-userMessagesContainer {
+    height: 584px;
+}
+}
+
+@media (min-width: 960px){
+
+}

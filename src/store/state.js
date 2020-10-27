@@ -1,6 +1,6 @@
 const INITIAL = {
 
-  chatRoute: 'console',
+  chatRoute: 'dashboard',
   chatWidget: true,
   showWidget: true,
   welcomeBox: true,

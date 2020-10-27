@@ -4,53 +4,32 @@ import AsyncClientData from "./AsyncClientData";
 import MessagesContainer from "../../components/MessagesContainer";
 import ClientDetailsComponent from "../../components/ClientDetailsComponent";
 import Footer from "../../components/Footer";
-import { Layout, Card, Row, Col } from "antd";
-import "./style.css";
-const { Content, Sider } = Layout;
-
-
+// import "./style.css";
 
 class CWVChatConsole extends PureComponent {
 
   render() {
     return (
-      <div>
-        <Row>
-          <Col xs={24} xl={6}>
-            <Sider width={"100%"} className="site-layout-background">
-              <ClientsListContainer />
-            </Sider>
-          </Col>
-          <Col xs={24} xl={10}>
-            <Content
-              className="site-layout-background"
-              style={{
-                padding: 0,
-                margin: 0,
-                minHeight: 280,
-              }}
-            >
-              <Card
-                style={{ width: "100%", height: "92vh", textAlign: "left" }}
-                bodyStyle={{ overflow: "auto", height: "100%", padding: "0" }}
-                title={'Client Name'}
-                tabBarExtraContent={<span>Setting</span>}
-              >
-                <div className="wpcwv-messageBody">
-                  <AsyncClientData />
-                  <MessagesContainer />
-                  <Footer />
-                </div>
+      <div className="cwv-chatWraper ">
 
-              </Card>
-            </Content>
-          </Col>
-          <Col xs={24} xl={8}>
-            <Sider width={"100%"} className="site-layout-background">
-              <ClientDetailsComponent />
-            </Sider>
-          </Col>
-        </Row>
+
+        <div className="cwv-console">
+          <div className="cwv-consoleLeft">
+            <ClientsListContainer />
+          </div>
+
+          <div className="cwv-userMessagesContainer">
+            <ClientDetailsComponent />
+            <section className="cwv-chatRoom">
+              <AsyncClientData />
+              <MessagesContainer />
+            </section>
+
+            <Footer />
+
+          </div>
+        </div>
+
       </div>
     );
   }

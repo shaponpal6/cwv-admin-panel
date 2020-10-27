@@ -1,7 +1,7 @@
 import React from 'react'
 import './style.css'
 
-function CardComponent(props) {
+function MyCard(props) {
     // console.log('props', props)
     const childrenWithProps = React.Children.map(props.children, child => {
         // checking isValidElement is the safe way and avoids a typescript error too
@@ -33,4 +33,4 @@ function CardComponent(props) {
     )
 }
 
-export default CardComponent
+export default MyCard

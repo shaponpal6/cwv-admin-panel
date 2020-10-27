@@ -1,6 +1,4 @@
 import React from "react";
-import { Button } from "antd";
-import { DownloadOutlined } from "@ant-design/icons";
 import { connect } from "react-redux";
 import { addMessage } from "../../redux/actions";
 
@@ -86,7 +84,7 @@ class RichEditorExample extends React.Component {
     this.clearOnSubmit()
     console.log("event", event);
     console.log("draftToHtml", markup);
-    
+
     this.props.addMessage(markup);
   }
 
@@ -153,15 +151,14 @@ class RichEditorExample extends React.Component {
               spellCheck={true}
             />
             <div className="wpcwv-RichEditorSubmit">
-              <Button
+              <button
                 type="button"
                 shape="round"
                 onClick={(event) => this.handleSumit(event)}
-                icon={<DownloadOutlined />}
                 size={"middle"}
               >
                 SEND
-              </Button>
+              </button>
             </div>
           </div>
         </div>

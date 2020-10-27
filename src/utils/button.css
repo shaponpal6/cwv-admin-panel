@@ -1,0 +1,57 @@
+.cwv-buttonRoot {
+    color: inherit;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    display: inline-flex;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    align-items: center;
+    user-select: none;
+    border-radius: 0;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+}
+.cwv-button {
+    color: rgba(0, 0, 0, 0.87);
+    box-sizing: border-box;
+    line-height: 1.75;
+    text-transform: uppercase;
+}
+.cwv-button:hover {
+    text-decoration: none;
+    background-color: rgba(0, 0, 0, 0.05);
+}
+.cwv-onlineButton {
+    width: 110px;
+    border-radius: 20px;
+    display: block;
+    padding: 0;
+    overflow: hidden;
+    font-size: 12px;
+    margin-top: 4px;
+    min-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-transform: capitalize;
+}
+.cwv-label {
+    width: 100%;
+    display: inherit;
+    align-items: inherit;
+    justify-content: inherit;
+}
+
+.cwv-ball{
+    width: 8px;
+    height: 8px;
+    display: inline-block;
+    margin-right: 4px;
+    border-radius: 50%;
+} 
+.cwv-ballGreen{
+    background-color: #8bc34a;
+}
