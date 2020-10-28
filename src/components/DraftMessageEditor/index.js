@@ -36,20 +36,19 @@ function DraftMessageEditor({ onMessageSave }) {
   };
 
   const styles = {
-    root: {
-      fontFamily: "'Helvetica', sans-serif",
-      padding: 20,
-      width: 600,
-    },
     editor: {
-      border: "1px solid #ccc",
       cursor: "text",
-      minHeight: 80,
       padding: 10,
+      minHeight: 55,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
     },
     button: {
-      marginTop: 10,
-      textAlign: "center",
+      minHeight: 55,
+      display: 'flex',
+      justifyContent: 'center',
+      flexDirection: 'column',
     },
   };
 
@@ -62,15 +61,18 @@ function DraftMessageEditor({ onMessageSave }) {
           placeholder="Enter Your Replay..."
         />
       </div>
-      <div className="wpcwv-RichEditorSubmit">
-        <button
-          type="button"
-          shape="round"
-          onClick={() => onMessageSaveHandler()}
-          size={"middle"}
-        >
-          SEND
-        </button>
+      <div className="wpcwv-RichEditorSubmit" style={styles.button}>
+        {/* <button>Send</button> */}
+        <div className="cwv-send" title="Send">
+          <button className="cwv-buttonRoot cwv-button" type="button" mini="true" aria-label="send"
+            disabled="" onClick={() => onMessageSaveHandler()}>
+            <span className="cwv-buttonLabel">
+              <svg className="cwv-SvgIconRoot" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+              </svg>
+            </span>
+          </button>
+        </div>
       </div>
     </div>
   );

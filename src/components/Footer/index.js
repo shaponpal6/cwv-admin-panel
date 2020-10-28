@@ -36,16 +36,7 @@ export const Footer = ({ firebase, clientId }) => {
                 {/* <input className="cwv-textarea" placeholder="Type a message" type="text" /> */}
                 <DraftMessageEditor onMessageSave={onMessageSave} />
             </div>
-            <div className="cwv-send" title="Send">
-                <button className="cwv-buttonRoot cwv-button" tabIndex="-1" type="button" mini="true" aria-label="send"
-                    disabled="">
-                    <span className="cwv-buttonLabel">
-                        <svg className="cwv-SvgIconRoot" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                            <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
-                        </svg>
-                    </span>
-                </button>
-            </div>
+
 
         </footer>
     )

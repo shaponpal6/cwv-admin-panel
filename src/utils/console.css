@@ -171,6 +171,9 @@
     line-height: 1.5;
     display: block;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .cwv-listUserMessage {
     font-size: 12px;
@@ -180,6 +183,9 @@
     color: rgba(0, 0, 0, 0.54);
     display: block;
     margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .cwv-touchRipple {
     top: 0;
@@ -230,16 +236,190 @@
     justify-content: center;
     transition: width 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms,margin 225ms cubic-bezier(0.4, 0, 0.6, 1) 0ms;
     margin-left: 0;
+    position: relative;
 }
 .cwv-UMCHeaderWraper {
     width: 100%;
     display: flex;
     padding: 20px 8px;
     position: relative;
-    align-items: center;
-    flex-direction: row;
-    justify-content: flex-start;
+    flex-direction: column;
 }
+.cwv-UMCHeaderExpend {
+    color: rgba(0, 0, 0, 0.87);
+    box-shadow: 0 10px 15px -5px rgba(62, 57, 107, .07);
+    padding-top: 24px;
+    padding-left: 16px;
+    margin-bottom: 24px;
+    padding-right: 16px;
+    padding-bottom: 24px;
+    border-radius: 8px;
+}
+.cwv-UMCHEWraper {
+    max-height: 200px;
+    overflow: auto;
+}
+.cwv-UMCHETitle {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.cwv-UMCHEIcon {
+    width: 48px;
+    border: 1px solid rgb(231, 239, 248);
+    height: 48px;
+    background: rgb(241, 248, 254);
+    box-shadow: 0 2px 15px -5px #2196F3;
+    text-align: center;
+    line-height: 44px;
+    margin-right: 24px;
+    border-radius: 8px;
+    vertical-align: middle;
+}
+.cwv-UMCHEName {
+    color: #1565C0;
+    position: relative;
+    font-size: 24px;
+    text-transform: capitalize;
+    font-family: Open Sans,sans-serif;
+    font-weight: 600;
+    line-height: 1.6;
+}
+.cwv-UMCHEDesc {
+    font-size: 16px;
+    font-family: Open Sans,sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+}
+.cwv-UMCHEDescWraper {
+    margin: 0;
+    padding: 0;
+    position: relative;
+    list-style: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.cwv-UMCHERowBase {
+    color: inherit;
+    border: 0;
+    cursor: pointer;
+    margin: 0;
+    display: inline-flex;
+    outline: 0;
+    padding: 0;
+    position: relative;
+    align-items: center;
+    user-select: none;
+    border-radius: 0;
+    vertical-align: middle;
+    justify-content: center;
+    text-decoration: none;
+    background-color: transparent;
+}
+.cwv-UMCHERow {
+    width: 100%;
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    text-align: left;
+    align-items: center;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    justify-content: flex-start;
+    text-decoration: none;
+    padding-left: 16px;
+    padding-right: 16px;
+    transition: background-color 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+}
+.cwv-UMCHERowIcon {
+    background: #64b5f6;
+    color: #fafafa;
+}
+.cwv-UMCHERowTitle {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 4px 10px;
+    white-space: nowrap;
+    margin: 0;
+}
+.cwv-UMCHERowLabel {
+    display: block;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 12px;
+    font-family: Open Sans,sans-serif;
+    font-weight: 500;
+    line-height: 1.43;
+    margin: 0;
+}
+.cwv-UMCHERowName {
+    display: block;
+    font-family: Open Sans,sans-serif;
+    font-weight: 400;
+    line-height: 1.5;
+    margin: 0;
+    font-size: 18px;
+    margin-bottom: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.cwv-UMCHERowActions {
+    top: 50%;
+    right: 16px;
+    position: absolute;
+    transform: translateY(-50%);
+    display: flex;
+}
+.cwv-userActionButton {
+    padding: 2px 10px;
+    color: #2196F3;
+    border: 1px solid rgba(33, 150, 243, 0.5);
+    margin: 0 8px;
+    border-radius: 20px;
+    font-size: 14px;
+}
+/* User info */
+.cwv-UMCHeaderWraperTop {
+    color: #fff;
+    padding: 8px;
+    background: rgb(213 245 251);
+    border-radius: 8px;
+    transition: box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    width: 100%;
+}
+.cwv-UMCHeaderTopBox {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+}
+.cwv-UMCHeaderTopBox div {
+    padding: 8px;
+}
+.cwv-UMCHeaderSectionOne, .cwv-UMCHeaderSectionTwo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.cwv-userMenuButton {
+    display: inline-block;
+    padding: 8px 30px;
+}
+.cwv-userInfoToggle {
+    opacity: 0;
+    display: inline;
+    position: absolute;
+    bottom: -2px;
+    width: 100%;
+    margin: 0 auto;
+}
+.cwv-UMCHeader:hover .cwv-userInfoToggle{
+    opacity: 1;
+}
+
+/* User info */
 
 .cwv-userOnChat {
     margin: 0;
@@ -272,7 +452,7 @@
     justify-content: inherit;
 }
 .cwv-chatRoom {
-    padding: 48px 24px;
+    padding: 18px 0px;
     overflow: auto;
     /* min-height: calc(100% - 100px); */
     height: 100%;
@@ -354,12 +534,13 @@
 
 
 .cwv-chatFooter {
-    margin: 0 16px;
+    margin: 10px 16px;
     display: flex;
     padding: 0px 16px;
     position: relative;
     box-shadow: 0px 1px 5px 0px rgba(80,80,80, 0.2), 0px 2px 2px 0px rgba(80,80,80, 0.14), 0px 3px 1px -2px rgba(80,80,80, 0.12);
     min-height: 55px;
+    max-height: 80px;
     align-items: center;
     border-radius: 50px;
     color: rgba(0, 0, 0, 0.87);
