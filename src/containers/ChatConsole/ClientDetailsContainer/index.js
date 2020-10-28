@@ -4,14 +4,17 @@ import Button from '../../../components/Button';
 // import { myChatActions } from '../../constants'
 import ClientDetails from "../../../components/ClientDetails";
 
-function ClientDetailsContainer() {
+function ClientDetailsContainer(props) {
+
+    console.log('props', props)
 
     const [menu, setMenu] = useState('');
     const [menuToggle, setMenuToggle] = useState(false);
 
     const changeMenuState = (key) => {
+        console.log('props', props)
         console.log(key);
-        if (menu === key || menu === '') setMenuToggle(!menuToggle);
+        if (!menuToggle || menu === key || menu === '') setMenuToggle(!menuToggle);
         setMenu(key);
     };
     const onMenuToggle = (key) => {
@@ -21,7 +24,6 @@ function ClientDetailsContainer() {
 
     return (
         <header className="cwv-UMCHeader">
-
             <div className="cwv-UMCHeaderWraper">
 
                 <div className="cwv-UMCHeaderWraperTop">
@@ -30,10 +32,11 @@ function ClientDetailsContainer() {
                             <div className="cwv-avatar cwv-avatarCircle cwv-mr-30">
                                 <img alt="avatar" src="https://randomuser.me/api/portraits/men/40.jpg" className="cwv-avatarImg" />
                             </div>
-                            <h2 className="cwv-userOnChat">Jim Doe
-                        <span className="cwv-userCaption">
+                            <h2 className="cwv-userOnChat">
+                                <span className="cwv-userName">Jim Doe</span>
+                                <span className="cwv-userCaption">
                                     <span className="cwv-ball cwv-ballGreen"></span>&nbsp;Online
-                        </span>
+                                    </span>
                             </h2>
                         </div>
                         <div className="cwv-UMCHeaderSectionTwo">
@@ -45,9 +48,6 @@ function ClientDetailsContainer() {
                             <Button className="cwv-userMenuButton" icon="lock" title="Setting" onClick={() => changeMenuState('setting')} />
 
                         </div>
-
-
-
                     </div>
                 </div>
 

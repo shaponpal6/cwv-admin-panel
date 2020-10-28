@@ -1,36 +1,35 @@
 import React, { PureComponent } from "react";
 import ClientsListContainer from "./ClientsListContainer";
 import AsyncClientData from "./AsyncClientData";
+import MessagesContainer from "../../components/MessagesContainer";
+import ClientDetailsContainer from "./ClientDetailsContainer";
+import Footer from "../../components/Footer";
+// import "./style.css";
 
 class CWVChatConsole extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {
-      clientId: ''
-    }
-  }
-
-  setClientId = (uid) => {
-    this.setState((oldState) => {
-      if (oldState.clientId !== uid) {
-        return { ...oldState, clientId: uid }
-      }
-      return oldState;
-    });
-  };
-
 
   render() {
     return (
       <div className="cwv-chatWraper ">
+
+
         <div className="cwv-console">
           <div className="cwv-consoleLeft">
-            <ClientsListContainer setClientId={this.setClientId} />
+            <ClientsListContainer />
           </div>
+
           <div className="cwv-userMessagesContainer">
-            <AsyncClientData clientId={this.state.clientId} />
+            <ClientDetailsContainer />
+            <section className="cwv-chatRoom">
+              <AsyncClientData />
+              <MessagesContainer />
+            </section>
+
+            <Footer />
+
           </div>
         </div>
+
       </div>
     );
   }

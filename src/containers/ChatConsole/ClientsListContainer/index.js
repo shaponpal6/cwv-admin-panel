@@ -12,7 +12,7 @@ import { myChatTabs } from '../../../constants'
 
 
 
-function ChatUsersList({ firebase }) {
+function ChatUsersList({ firebase, setClientId }) {
     const dispatch = useDispatch();
 
     const [myChatTabsState, setMyChatTabsState] = useState(myChatTabs[1].key);
@@ -38,6 +38,7 @@ function ChatUsersList({ firebase }) {
     // On User Click
     const onChatUserClick = (uid) => {
         console.log('uid', uid)
+        setClientId(uid);
         dispatch(setClientID(uid))
     }
 
