@@ -22,7 +22,7 @@ function ChatUsersList({ firebase, setClientId }) {
 
     // myChatTabsState onChange Handeler
     const onChatTabChange = (key) => {
-        console.log({ [key]: key });
+        // console.log({ [key]: key });
         setMyChatTabsState(key);
     };
 
@@ -44,7 +44,7 @@ function ChatUsersList({ firebase, setClientId }) {
 
     // Filter User
     const chatUsersListHandler = (chatUsersList, type) => {
-        console.log('chatUsersList1111', chatUsersList)
+        // console.log('chatUsersList1111', chatUsersList)
         if (!chatUsersList.data()) return {};
         const clients = chatUsersList.data();
         if (typeof clients.users === 'object' && clients.users !== null) {
@@ -90,7 +90,6 @@ function ChatUsersList({ firebase, setClientId }) {
                     {chatUsersListLoading && <Loading />}
                     {(chatUsersList && chatUsersListHandler(chatUsersList, myChatTabsState)) &&
                         (Object.entries(chatUsersListHandler(chatUsersList, myChatTabsState)).map((user, index) => {
-                            console.log('user', user, index)
                             return (
                                 <UserConponent key={'cwvClient-' + index} user={user} onClick={() => onChatUserClick(user[0])} />
                             );

@@ -1,6 +1,53 @@
 import React, { useState, memo } from 'react'
+import { withFirebase } from "../../firebase";
+import uniqid from 'uniqid'
+import DraftEditor from '../DraftEditor'
+import UserInfoRow from '../UserInfoRow'
 
-function ClientNotes() {
+function ClientNotes({ firebase, clientId, shortNotes, loading, error }) {
+
+    console.log('>>>>>>shortNotes>>>>>>', shortNotes)
+
+    const onMessageSave = (note) => {
+        if (!clientId) return;
+        const { uid } = firebase.getCurrentUser();
+        const key = uniqid('note');
+        const noteData = {
+            note: note,
+            status: 0,
+            senderID: uid,
+            time: Date.now(),
+        }
+        console.log('noteData', noteData)
+
+        firebase.updateShortNote(clientId, key, noteData);
+    };
+
+    const editorStyles = {
+        root: {},
+        editor: {
+            cursor: "text",
+            padding: 10,
+            minHeight: 55,
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+        },
+    };
+
+    const button = {
+        load: true,
+        title: 'Save',
+        icon: 'send',
+        containerClass: '',
+        className: 'cwv-btnMessageSend',
+        style: {
+            minHeight: 55,
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+        }
+    };
 
     return (
         <>
@@ -18,38 +65,19 @@ function ClientNotes() {
             <hr className="cwv-hr" />
             <div className="cwv-UMCHEDesc">
                 <div className="cwv-UMCHEDescWraper">
-                    <div className="cwv-UMCHERowBase cwv-UMCHERow cwv-button" role="button"
-                        aria-disabled="false">
-                        <div className="cwv-listAvatar cwv-UMCHERowIcon">
-                            <svg className="cwv-SvgIconRoot" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
-                                <path
-                                    d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z">
-                                </path>
-                            </svg>
-                        </div>
-                        <div className="cwv-UMCHERowTitle">
-                            <span className="cwv-UMCHERowLabel">Name </span>
-                            <p className="cwv-UMCHERowName"> Shapon Pal</p>
-                        </div>
-                        <div className="cwv-UMCHERowActions">
-                            <button className="cwv-buttonRoot cwv-button cwv-userActionButton" type="button">
-                                <span className="MuiButton-label">Edit</span>
-                                <span className="cwv-touchRipple"></span>
-                            </button>
-                            <button className="cwv-buttonRoot cwv-button cwv-userActionButton" type="button">
-                                <span className="MuiButton-label">Skip</span>
-                                <span className="cwv-touchRipple"></span>
-                            </button>
-                        </div>
-                        <span className="cwv-touchRipple"></span>
-                    </div>
+                    {/* <UserInfoRow key={"row-"} name={'key'} value={'vvvvvvv'} type="notes" /> */}
+                    {shortNotes && Object.keys(shortNotes).map((key, index) => {
+                        console.log('key, index', key, index, shortNotes[key]['note'], shortNotes[key])
+                        return <UserInfoRow key={"row-" + index} name={key} value={shortNotes[key]['note']} type="details" />
+                    })}
                 </div>
             </div>
             <hr className="cwv-hr" />
+            <DraftEditor className="" placeholder="Add New Note" onSubmitHandler={onMessageSave} styles={editorStyles} button={button} />
         </>
     )
 }
 
 
-export default memo(ClientNotes)
+export default withFirebase(ClientNotes)
 

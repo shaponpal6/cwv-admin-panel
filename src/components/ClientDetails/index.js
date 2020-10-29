@@ -2,7 +2,7 @@ import React, { useState, memo } from 'react'
 import DetailsHeader from '../DetailsHeader'
 import UserInfoRow from '../UserInfoRow'
 
-function ClientDetails({ userDetails, loading, error }) {
+function ClientDetails({ clientId, userDetails, loading, error }) {
     console.log('ClientDetails props', userDetails)
 
     return (
@@ -13,7 +13,7 @@ function ClientDetails({ userDetails, loading, error }) {
                 <div className="cwv-UMCHEDescWraper">
                     {userDetails && Object.keys(userDetails).map((key, index) => {
                         console.log('key, index', key, index, userDetails[key])
-                        return <UserInfoRow key={"row-" + index} name={key} value={userDetails[key]} />
+                        return <UserInfoRow key={"row-" + index} name={key} value={userDetails[key]} type="details" />
                     })}
                 </div>
             </div>

@@ -93,9 +93,9 @@ export const AsyncClientData = ({ firebase, clientId }) => {
                     </div>
                     <div className="cwv-UMCHeaderExpend" style={{ display: (menuToggle ? 'block' : 'none') }}>
                         <div className="cwv-UMCHEWraper">
-                            {menu === 'details' && <ClientDetails userDetails={userDetails} loading={loading} error={error} />}
-                            {menu === 'notes' && <ClientNotes shortNotes={shortNotes} loading={loading} error={error} />}
-                            {menu === 'settings' && <Settings operators={operators} loading={loading} error={error} />}
+                            {menu === 'details' && <ClientDetails userDetails={userDetails} loading={loading} error={error} clientId={clientId} />}
+                            {menu === 'notes' && <ClientNotes shortNotes={shortNotes} loading={loading} error={error} clientId={clientId} />}
+                            {menu === 'settings' && <Settings operators={operators} loading={loading} error={error} clientId={clientId} />}
                         </div>
                     </div>
                 </div>

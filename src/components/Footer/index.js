@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect, useDispatch } from "react-redux";
 import uniqid from 'uniqid'
-import DraftMessageEditor from "../DraftMessageEditor";
+import DraftEditor from "../DraftEditor";
 import { addMessage } from "../../redux/actions";
 import { withFirebase } from "../../firebase";
 import './style.css'
@@ -30,11 +30,37 @@ export const Footer = ({ firebase, clientId }) => {
         dispatch(addMessage(message));
     };
 
+    const styles = {
+        root: {},
+        editor: {
+            cursor: "text",
+            padding: 10,
+            minHeight: 55,
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+        },
+    };
+
+    const button = {
+        load: true,
+        title: '',
+        icon: 'send',
+        containerClass: '',
+        className: 'cwv-btnMessageSend',
+        style: {
+            minHeight: 55,
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+        }
+    };
+
     return (
         <footer className="cwv-chatFooter">
             <div className="cwv-inputWraper">
                 {/* <input className="cwv-textarea" placeholder="Type a message" type="text" /> */}
-                <DraftMessageEditor onMessageSave={onMessageSave} />
+                <DraftEditor className="" placeholder="Enter Your Replay..." onSubmitHandler={onMessageSave} styles={styles} button={button} />
             </div>
 
 

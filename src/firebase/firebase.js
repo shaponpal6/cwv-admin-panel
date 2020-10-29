@@ -28,19 +28,20 @@ class Firebase {
   // *** Auth API ***
 
   getAuth = () => this.auth;
-  getCollection = (ref) => this.db.collection(ref);
-  getDoc = (ref) => this.db.doc(ref);
-  setData = (collection, uid, data) => this.db.collection(collection).doc(uid).set(data);
-  addData = (collection, uid, field, data) => this.db.collection(collection).doc(uid).collection(field).add(data);
+  // getCollection = (ref) => this.db.collection(ref);
+  // getDoc = (ref) => this.db.doc(ref);
+  // setData = (collection, uid, data) => this.db.collection(collection).doc(uid).set(data);
+  // addData = (collection, uid, field, data) => this.db.collection(collection).doc(uid).collection(field).add(data);
 
-  addMessage = (uid, data) => this.db.collection('clients').doc(uid).doc('messages').update('array', data);
-  updateMessages = (uid, data) => {
-    const clientRef = this.db.collection('clients').doc(uid);
-    // data.time = this.firestore.Timestamp.now();
-    return clientRef.update({
-      messages: this.firestore.FieldValue.arrayUnion(data)
-    });
-  };
+  // addMessage = (uid, data) => this.db.collection('clients').doc(uid).doc('messages').update('array', data);
+  // updateMessages = (uid, data) => {
+  //   const clientRef = this.db.collection('clients').doc(uid);
+  //   // data.time = this.firestore.Timestamp.now();
+  //   return clientRef.update({
+  //     messages: this.firestore.FieldValue.arrayUnion(data)
+  //   });
+  // };
+
   setMessages = (uid, data) => {
     const clientRef = this.db.collection('clients').doc(uid);
     // data.time = this.firestore.Timestamp.now();
@@ -48,10 +49,20 @@ class Firebase {
       messages: this.firestore.FieldValue.arrayUnion(data)
     }, { merge: true });
   };
+
   // get users Map
   getClientData = (uid) => {
     if (!uid || uid === '') return null;
     return this.db.doc(`clients/${uid}`);
+  };
+
+  // Update User Short Notes
+  updateShortNote = (uid, key, data) => {
+    const userData = this.db.collection('clients').doc(uid);
+    data.seen = this.firestore.Timestamp.now();
+    return userData.set({
+      "shortNotes": { [key]: data }
+    }, { merge: true });
   };
 
   // Update Map
