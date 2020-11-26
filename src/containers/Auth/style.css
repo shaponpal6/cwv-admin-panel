@@ -4,4 +4,38 @@
     align-items: center;
     height: 100vh;
     width: 100%;
+    background: rgba(255, 255, 255, 0.9);
+    transition: left 0.4s ease-out, opacity 0.4s ease-out;
+    backdrop-filter: saturate(180%) blur(20px);
+    color: rgba(0, 0, 0, 0.87);
+    width: 100%;
+    flex-direction: row;
+    padding: 16px;
+}
+.wpcwv-authBox {
+    width: 30%;
+    text-align: center;
+    color: rgba(0, 0, 0, 0.87);
+    background: #42A5F5;
+    border-radius: 20px;
+    padding: 30px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+.wpcwv-authBox:hover {
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+.wpcwv-signInBTN {
+    width: auto;
+    height: 48px;
+    padding: 0 50px;
+    border: 0;
+    min-width: 48px;
+    min-height: auto;
+    border-radius: 24px;
+    color: #fff;
+    background-color: #00BFA5;
+    box-shadow: 0px 3px 5px -1px rgba(80,80,80, 0.2), 0px 6px 10px 0px rgba(80,80,80, 0.14), 0px 1px 18px 0px rgba(80,80,80, 0.12);
+    box-sizing: border-box;
+    cursor: pointer;
 }

@@ -7,11 +7,11 @@ function index({ firebase }) {
 
   return (
     <div className="wpcwv-authPage">
-      <div style={{ width: '30%', textAlign: 'center' }}>
-        <p>SP Assistant</p>
+      <div className="wpcwv-authBox">
+        <h1>CWV Chat</h1>
         <p>Card content</p>
-        <button type="primary" key="console" onClick={() => firebase.doSignInWithGoogle()}>
-          Login
+        <button className="wpcwv-signInBTN" onClick={() => firebase.doSignInWithGoogle()}>
+          Login 
         </button>
       </div>
     </div>
