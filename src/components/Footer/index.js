@@ -22,7 +22,7 @@ export const Footer = ({ firebase, clientId }) => {
             senderID: uid,
             name: displayName,
             photoURL: photoURL,
-            time: Date.now(),
+            time: new Date().toISOString(),
         }
         console.log('message', message)
 
@@ -44,15 +44,16 @@ export const Footer = ({ firebase, clientId }) => {
 
     const button = {
         load: true,
-        title: '',
+        title: 'SEND',
         icon: 'send',
         containerClass: '',
         className: 'cwv-btnMessageSend',
         style: {
-            minHeight: 55,
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
+            alignItems: 'center',
+            height: '100%'
         }
     };
 

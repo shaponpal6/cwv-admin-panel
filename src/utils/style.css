@@ -117,7 +117,7 @@
 
 
 #cwv-sidebar {
-    width: 240px;
+    width: 100%;
     height: calc(100% - 64px);
     display: block;
     padding:  0;
@@ -128,6 +128,8 @@
     margin-bottom: 30px;
 }
 .cwv-menuItem {
+    position: relative;
+    cursor: pointer;
     margin: 8px 0;
     padding: 8px 0;
     padding-left: 24px;
@@ -142,7 +144,7 @@
     background: #d7e5f0;
 }
 .cwv-menuItemActive:before {
-    top: 8px;
+    top: 0;
     left: 0;
     width: 5px;
     height: 38px;

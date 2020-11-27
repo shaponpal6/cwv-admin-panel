@@ -1,3 +1,11 @@
 
-
-
+.cwv-mobileMenu {
+    width: 80px !important;
+}
+.cwv-mobileMenu .cwv-logo, .cwv-mobileMenu .cwv-adminName{
+    font-size: 14px;
+}
+.cwv-mobileMenu .cwv-avatar.cwv-avatarCircle {
+    width: 50px;
+    height: 50px;
+}

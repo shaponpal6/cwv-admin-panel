@@ -1,10 +1,10 @@
-import React, { memo, PureComponent } from "react";
+import React, { memo, PureComponent } from 'react';
 import { connect } from "react-redux";
 import { setMenuState } from "../../redux/actions";
 import Dashboard from '../Dashboard';
 import ChatConsole from '../ChatConsole';
 import KnowledgeBase from '../KnowledgeBase';
-// import "./style.css";
+import "./style.css";
 
 const menus = [
   {
@@ -39,6 +39,7 @@ class CWVAPPRoot extends PureComponent {
       appPage: 'console',
     }
   }
+  
 
   componentDidMount() {
 
@@ -63,10 +64,10 @@ class CWVAPPRoot extends PureComponent {
       <div className="cwv-chatWidgetContainer">
 
         <div className="cwv-wraper">
-          <div className="cwv-container" style={{ display: this.state.menuBar ? "block" : "none" }}>
+          <div className={"cwv-container "+ (!this.state.menuBar ? "cwv-mobileMenu" : "")} style={{ display: this.state.menuBar ? "block" : "none2" }}>
             <div className="cwv-logoWraper">
               <a aria-current="dashboard" className="cwv-logo" href="#">
-                Puspo Chat App
+                CWV Chat
             </a>
             </div>
 
@@ -95,7 +96,7 @@ class CWVAPPRoot extends PureComponent {
                         </path>
                       </svg>
                     </span>
-                    <span className="cwv-menuName">{menu.title}</span>
+                    {this.state.menuBar && <span className="cwv-menuName">{menu.title}</span>}
                   </div>
                 );
               })}
@@ -105,7 +106,7 @@ class CWVAPPRoot extends PureComponent {
 
           </div>
 
-          <button className="cwv-buttonRoot cwv-menuButton" type="button" aria-label="Menu" onClick={this.onMenuToggle}>
+          <button className={"cwv-buttonRoot cwv-menuButton " + (!this.state.menuBar ? "cwv-mobileMenuIcon" : "")}  type="button" aria-label="Menu" onClick={this.onMenuToggle}>
             <span className="cwv-label">
               <svg className="cwv-SvgIconRoot" focusable="false" viewBox="0 0 24 24" aria-hidden="true">
                 <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
