@@ -3,31 +3,57 @@ import { connect } from "react-redux";
 import { setMenuState } from "../../redux/actions";
 import Dashboard from '../Dashboard';
 import ChatConsole from '../ChatConsole';
-import KnowledgeBase from '../KnowledgeBase';
+import Profile from '../Profile';
 import "./style.css";
-
+import { Home, MessageSquare, Settings, Users, Globe } from 'react-feather';
+import SettingsPage from '../SettingsPage';
+import Tracking from '../Tracking';
+                      
+                      
 const menus = [
   {
     key: "home",
     title: "Home",
-    icon: ""
+    icon: "Home"
+  },
+  {
+    key: "tracking",
+    title: "Tracking",
+    icon: "Globe"
   },
   {
     key: "console",
     title: "Chats",
-    icon: ""
+    icon: "MessageSquare"
   },
   {
     key: "profile",
     title: "Profile",
-    icon: ""
+    icon: "Users"
   },
   {
     key: "setting",
-    title: "Setting",
-    icon: ""
+    title: "Settings",
+    icon: "Settings"
   },
-]
+];
+                      
+const setIcon = (icon, size="16") => {
+  switch (icon) {
+    case 'Home':
+      return <Home size={size}/>
+    case 'Globe':
+      return <Globe size={size}/>
+    case 'MessageSquare':
+      return <MessageSquare size={size}/>
+    case 'Users':
+      return <Users size={size}/>
+    case 'Settings':
+      return <Settings size={size}/>
+    default:
+      break;
+  }
+}
 
 
 class CWVAPPRoot extends PureComponent {
@@ -36,7 +62,7 @@ class CWVAPPRoot extends PureComponent {
     super(props);
     this.state = {
       menuBar: true,
-      appPage: 'console',
+      appPage: 'setting',
     }
   }
   
@@ -89,12 +115,7 @@ class CWVAPPRoot extends PureComponent {
                 return (
                   <div key={"menu-" + index} className={"cwv-menuItem " + active} onClick={() => this.onMenuClick(menu.key)}>
                     <span className="cwv-menuIcon ">
-                      <svg className="sc-bdVaJa fUuvxv" fill="#000000" width="22px" height="22px" viewBox="0 0 1024 1024"
-                        rotate="0">
-                        <path
-                          d="M512 224l-320 256v416h224v-256h192v256h224v-416l-320-256zM800 864h-160v-256h-256v256h-160v-368.62l288-230.4 288 230.4v368.62z M512 128l-192 153.6v-89.6h-128v191.998l-64 50.998 23.020 22.768 360.98-288.784 360.98 288.786 23.020-22.77-384-306.996zM288 307.198l-64 51.2v-134.398h64v83.198z">
-                        </path>
-                      </svg>
+                      {menu.icon && setIcon(menu.icon)}
                     </span>
                     {this.state.menuBar && <span className="cwv-menuName">{menu.title}</span>}
                   </div>
@@ -112,15 +133,15 @@ class CWVAPPRoot extends PureComponent {
                 <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
               </svg>
             </span>
-            <span className="MuiTouchRipple-root"></span>
           </button>
 
         </div>
 
-        { this.state.appPage === "dashboard" && <Dashboard />}
+        { this.state.appPage === "home" && <Dashboard />}
+        { this.state.appPage === "tracking" && <Tracking/> }
         { this.state.appPage === "console" && <ChatConsole />}
-        { this.state.appPage === "profile" && <KnowledgeBase />}
-        { this.state.appPage === "setting" && <KnowledgeBase />}
+        { this.state.appPage === "profile" && <Profile />}
+        { this.state.appPage === "setting" && <SettingsPage/>}
 
       </div >
     )

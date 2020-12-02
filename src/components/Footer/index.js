@@ -35,10 +35,12 @@ export const Footer = ({ firebase, clientId }) => {
         editor: {
             cursor: "text",
             padding: 10,
-            minHeight: 55,
+            maxHeight: 55,
+            overflow: 'auto',
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
+            width: '90%'
         },
     };
 
@@ -60,11 +62,8 @@ export const Footer = ({ firebase, clientId }) => {
     return (
         <footer className="cwv-chatFooter">
             <div className="cwv-inputWraper">
-                {/* <input className="cwv-textarea" placeholder="Type a message" type="text" /> */}
                 <DraftEditor className="" placeholder="Enter Your Replay..." onSubmitHandler={onMessageSave} styles={styles} button={button} />
             </div>
-
-
         </footer>
     )
 }

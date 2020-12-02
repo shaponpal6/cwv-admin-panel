@@ -16,14 +16,16 @@ function ChatUsersList({ firebase, setClientId }) {
     const dispatch = useDispatch();
 
     const [myChatTabsState, setMyChatTabsState] = useState(myChatTabs[1].key);
-    // const [myChatList, filterChatUsersList] = useState({});
+    const [myChatList, filterChatUsersList] = useState({});
+    const [filter, setFilter] = useState({type: '', action: ""});
+    const [search, setSearch] = useState('');
 
 
 
     // myChatTabsState onChange Handeler
     const onChatTabChange = (key) => {
-        // console.log({ [key]: key });
-        setMyChatTabsState(key);
+        setFilter({type: 'chatType', action: key});
+        //setSearch('');
     };
 
 
@@ -34,6 +36,22 @@ function ChatUsersList({ firebase, setClientId }) {
         }
     );
 
+   
+
+    useEffect(() => {
+        setFilter({type: 'search', action: search});
+    }, [search]);
+
+
+    useEffect(() => {
+        if(chatUsersList && chatUsersList.data()){
+            filterChatUsersList(chatUsersListHandler(chatUsersList));
+        }
+        return () => {     
+            // Unregister hook      
+        }
+    }, [chatUsersListLoading, filter]);
+
 
     // On User Click
     const onChatUserClick = (uid) => {
@@ -43,15 +61,15 @@ function ChatUsersList({ firebase, setClientId }) {
     }
 
     // Filter User
-    const chatUsersListHandler = (chatUsersList, type) => {
-        // console.log('chatUsersList1111', chatUsersList)
+    const chatUsersListHandler = (chatUsersList) => {
         if (!chatUsersList.data()) return {};
         const clients = chatUsersList.data();
         if (typeof clients.users === 'object' && clients.users !== null) {
-            if (type !== "all" && myChatTabs.map(a => a.key).includes(type)) {
-                const raw = clients.users;
+            const raw = clients.users;
+            console.log('filter', filter)
+            if (filter.type === "chatType" && filter.action !== "") {
                 return Object.keys(raw)
-                    .filter(key => (raw[key].hasOwnProperty('type') && raw[key].type === type))
+                    .filter(key => (raw[key].hasOwnProperty('type') && raw[key].type === filter.action))
                     .reduce((obj, key) => {
                         return {
                             ...obj,
@@ -59,7 +77,17 @@ function ChatUsersList({ firebase, setClientId }) {
                         };
                     }, {});
             }
-
+            if (filter.type === "search" && filter.action !== "") {
+                return Object.keys(raw)
+                    .filter(key => (raw[key].hasOwnProperty('name') && raw[key].name.toLowerCase().indexOf(filter.action.toLowerCase()) > -1 ))
+                    .reduce((obj, key) => {
+                        return {
+                            ...obj,
+                            [key]: raw[key]
+                        };
+                    }, {});
+            }
+            
             return clients.users;
         }
         return {};
@@ -77,19 +105,17 @@ function ChatUsersList({ firebase, setClientId }) {
                             </path>
                         </svg>
                     </div>
-                    <input className="cwv-searchBar" placeholder="Search" />
+                    <input className="cwv-searchBar" placeholder="Search" onChange={(e) => setSearch(e.target.value)} value={search} />
                 </div>
             </div>
-            <div className="cwv-clientsCount">{chatUsersList && Object.entries(chatUsersListHandler(chatUsersList, myChatTabsState)).length}&nbsp; Contacts</div>
-
-
-
+            <div className="cwv-clientsCount">{chatUsersList && Object.entries(myChatList).length}&nbsp; Contacts</div>
+            
             <RSC className="wpcwv-clientListScrollbar" id="wpcwv-clientListScrollbar" style={{ width: "100%", height: "100%", padding: "10px" }} momentum={true} maximalThumbYSize={10} >
 
                 <ul className="cwv-clientsList">
                     {chatUsersListLoading && <Loading />}
-                    {(chatUsersList && chatUsersListHandler(chatUsersList, myChatTabsState)) &&
-                        (Object.entries(chatUsersListHandler(chatUsersList, myChatTabsState)).map((user, index) => {
+                    {/* {(chatUsersList && chatUsersListHandler(chatUsersList, myChatTabsState)) && */}
+                    {myChatList && (Object.entries(myChatList).map((user, index) => {
                             return (
                                 <UserConponent key={'cwvClient-' + index} user={user} onClick={() => onChatUserClick(user[0])} />
                             );

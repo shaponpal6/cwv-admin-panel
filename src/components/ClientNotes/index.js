@@ -22,6 +22,34 @@ function ClientNotes({ firebase, clientId, shortNotes, loading, error }) {
 
         firebase.updateShortNote(clientId, key, noteData);
     };
+    const onEdit = (note) => {
+        if (!clientId) return;
+        const { uid } = firebase.getCurrentUser();
+        const key = uniqid('note');
+        const noteData = {
+            note: note,
+            status: 0,
+            senderID: uid,
+            time: Date.now(),
+        }
+        console.log('noteData', noteData)
+
+        firebase.updateShortNote(clientId, key, noteData);
+    };
+    const onDelete = (note) => {
+        if (!clientId) return;
+        const { uid } = firebase.getCurrentUser();
+        const key = uniqid('note');
+        const noteData = {
+            note: note,
+            status: 0,
+            senderID: uid,
+            time: Date.now(),
+        }
+        console.log('noteData', noteData)
+
+        firebase.updateShortNote(clientId, key, noteData);
+    };
 
     const editorStyles = {
         root: {},
@@ -35,23 +63,38 @@ function ClientNotes({ firebase, clientId, shortNotes, loading, error }) {
         },
     };
 
+    const styles = {
+        root: {},
+        editor: {
+            cursor: "text",
+            padding: 10,
+            maxHeight: 55,
+            overflow: 'auto',
+            display: 'flex',
+            justifyContent: 'center',
+            flexDirection: 'column',
+            width: '90%'
+        },
+    };
+
     const button = {
         load: true,
-        title: 'Save',
+        title: 'SAVE',
         icon: 'send',
         containerClass: '',
         className: 'cwv-btnMessageSend',
         style: {
-            minHeight: 55,
             display: 'flex',
             justifyContent: 'center',
             flexDirection: 'column',
+            alignItems: 'center',
+            height: '100%'
         }
     };
 
     return (
         <>
-            <div className="cwv-UMCHETitle">
+            {/* <div className="cwv-UMCHETitle">
                 <span className="cwv-UMCHEIcon">
                     <svg className="cwv-SvgIconRoot" fill="#000000" width="22px" height="22px" viewBox="0 0 1024 1024"
                         rotate="0">
@@ -61,19 +104,24 @@ function ClientNotes({ firebase, clientId, shortNotes, loading, error }) {
                     </svg>
                 </span>
                 <div className="cwv-UMCHEName">Short Notes</div>
-            </div>
-            <hr className="cwv-hr" />
+            </div> */}
+            {/* <hr className="cwv-hr" /> */}
             <div className="cwv-UMCHEDesc">
                 <div className="cwv-UMCHEDescWraper">
                     {/* <UserInfoRow key={"row-"} name={'key'} value={'vvvvvvv'} type="notes" /> */}
                     {shortNotes && Object.keys(shortNotes).map((key, index) => {
                         console.log('key, index', key, index, shortNotes[key]['note'], shortNotes[key])
-                        return <UserInfoRow key={"row-" + index} name={key} value={shortNotes[key]['note']} type="details" />
+                        return <UserInfoRow key={"row-" + index} name={key} value={shortNotes[key]['note']} type="notes" />
                     })}
                 </div>
             </div>
             <hr className="cwv-hr" />
-            <DraftEditor className="" placeholder="Add New Note" onSubmitHandler={onMessageSave} styles={editorStyles} button={button} />
+            <div className="cwv-chatFooter cwv-noteSaveWraper">
+                <div className="cwv-inputWraper">
+                    <DraftEditor className="" placeholder="Add New Note" onSubmitHandler={onMessageSave} styles={styles} button={button} />
+                </div>
+            </div>
+            {/* <DraftEditor className="" placeholder="Add New Note" onSubmitHandler={onMessageSave} styles={editorStyles} button={button} /> */}
         </>
     )
 }

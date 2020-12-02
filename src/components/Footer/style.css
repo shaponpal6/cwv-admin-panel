@@ -3,3 +3,15 @@
     width: 100%;
     bottom: 0;
 }
+.cwv-send {
+    background-color: #d5f5fb;
+    padding: 6px 16px;
+    font-size: 0.875rem;
+    min-width: 64px;
+    box-sizing: border-box;
+    font-family: Open Sans,sans-serif;
+    font-weight: 600;
+    line-height: 1.75;
+    border-radius: 20px;
+    text-transform: uppercase;
+}

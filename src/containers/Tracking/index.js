@@ -1,20 +1,20 @@
 import React from 'react'
-import { Home, Settings } from "react-feather";
+import { Globe, Home, Settings } from "react-feather";
 // import Button from "../../components/Button";
 // import Options from "./Options";
 
 import "./style.css";
 
-function Dashboard() {
+function Tracking() {
   return (
     <div className="cwv-chatWraper ">
         <div className="cwv-console cwv-settingsWraper">
           <div className="cwv-header">
             <div className="cwv-UMCHETitle">
               <span className="cwv-UMCHEIcon">
-                <Home size={30} />
+                <Globe size={30} />
               </span>
-              <div className="cwv-UMCHEName">Dashboard</div>
+              <div className="cwv-UMCHEName">Visitors Track</div>
             </div>
             <div className="cwv-saveSettings">
               <Settings size={14} />
@@ -40,5 +40,5 @@ function Dashboard() {
   )
 }
 
-export default Dashboard
+export default Tracking
 

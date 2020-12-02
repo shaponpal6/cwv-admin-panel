@@ -1,0 +1,61 @@
+.cwv-settingsWraper {
+    flex-direction: column;
+}
+.cwv-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 30px;
+}
+.cwv-header .cwv-UMCHETitle{
+    margin: 0;
+}
+.cwv-saveSettings {
+    float: right;
+    margin-right: 10px;
+}
+.cwv-optionContainer {
+    flex-grow: 0;
+    max-width: 100%;
+    flex-basis: 100%;
+}
+.cwv-optionWraper {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+.cwv-optionsPage {
+    padding: 18px 0px;
+    overflow: auto;
+    /* min-height: calc(100% - 100px); */
+    height: 100%;
+}
+.cwv-optionName {
+    padding-top: 8px;
+    padding-bottom: 8px;
+}
+
+.cwv-option {
+    width: 100%;
+    display: flex;
+    position: relative;
+    box-sizing: border-box;
+    text-align: left;
+    align-items: center;
+    justify-content: space-between;
+    text-decoration: none;
+    padding: 8px 48px 8px 0;
+}
+.cwv-optionName {
+    margin: 4px 0;
+}
+.cwv-optionLabelName {
+    margin: 0;
+}
+.cwv-optionLabelDesc {
+    padding: 0;
+    margin: 6px 0;
+}
+.cwv-settingName {
+    padding: 10px 20px;
+    margin: 0;
+}
