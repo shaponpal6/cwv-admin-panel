@@ -1,0 +1,17 @@
+{
+    "tracking": 1,
+    "browserInfo": 1,
+    "locationInfo": 1,
+    "ip": 1,
+    "city": 1,
+    "country": 1,
+    "country_code": 1,
+    "longitude": 1,
+    "latitude": 1,
+    "browser": 1,
+    "page": 1,
+    "referrer": 1,
+    "os": 1,
+    "platform": 1,
+    "device": 1
+}

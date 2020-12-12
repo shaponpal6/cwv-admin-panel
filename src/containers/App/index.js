@@ -62,7 +62,7 @@ class CWVAPPRoot extends PureComponent {
     super(props);
     this.state = {
       menuBar: true,
-      appPage: 'setting',
+      appPage: 'tracking',
     }
   }
   
@@ -78,6 +78,7 @@ class CWVAPPRoot extends PureComponent {
   };
 
   onMenuClick = (page) => {
+    console.log('page', page)
     this.setState((oldState) => {
       return { ...oldState, appPage: page }
     });
@@ -138,7 +139,7 @@ class CWVAPPRoot extends PureComponent {
         </div>
 
         { this.state.appPage === "home" && <Dashboard />}
-        { this.state.appPage === "tracking" && <Tracking/> }
+        { this.state.appPage === "tracking" && <Tracking onMenuChange={this.onMenuClick}/> }
         { this.state.appPage === "console" && <ChatConsole />}
         { this.state.appPage === "profile" && <Profile />}
         { this.state.appPage === "setting" && <SettingsPage/>}

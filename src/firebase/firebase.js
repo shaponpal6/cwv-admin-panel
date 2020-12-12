@@ -1,6 +1,7 @@
 import app from "@firebase/app";
 import "@firebase/firestore";
 import "@firebase/auth";
+import  "@firebase/remote-config";
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
@@ -19,11 +20,16 @@ class Firebase {
       app.initializeApp(firebaseConfig);
     }
 
+    this.remoteConfig = app.remoteConfig();
     this.auth = app.auth();
     this.db = app.firestore();
     this.firestore = app.firestore;
     this.googleProvider = new app.auth.GoogleAuthProvider();
   }
+
+
+
+
 
   // *** Auth API ***
 
@@ -77,6 +83,11 @@ class Firebase {
   // get users Map
   getListData = (type = 'chatUsersList') => {
     return this.db.doc(`lists/${type}`);
+  };
+  // get users Map
+  getData = (docs = '', type = '') => {
+    if(!docs || !type) return;
+    return this.db.doc(`${docs}/${type}`);
   };
 
 

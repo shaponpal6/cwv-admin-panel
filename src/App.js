@@ -15,8 +15,11 @@ import "./utils/style.css"
 import "./utils/media.css"
 
 
+
+
 function App({ firebase }) {
   const [user, loading, error] = useAuthState(firebase.getAuth());
+
   if (loading) {
     return (
       <div>

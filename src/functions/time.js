@@ -13,7 +13,7 @@ export function localISOString(toISOString)
     return new Date(Date.parse(toISOString) - (date.getTimezoneOffset() * 60000)).toISOString();
 }
 
-export function makeTime(toISOString, timeFormat = 'MMM d, yy h:mm a')
+export function getTime(toISOString, timeFormat = 'MMM d, yy h:mm a')
 {
     if(!!isIsoDate(toISOString))
         return format(parseISO(toISOString), timeFormat);
