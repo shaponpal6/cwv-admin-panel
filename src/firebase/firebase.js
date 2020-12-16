@@ -28,7 +28,31 @@ class Firebase {
   }
 
 
+// Add Visitors
+makeNewTracking = (sessionID, data) => {
+  const chatUsersList = this.db.collection("actions").doc('chatSessions');
+  return chatUsersList.set(
+    {
+      activesSession: sessionID,
+      sessions: { [sessionID]: data },
+    },
+    { merge: true }
+  );
+};
 
+  // Add Visitors
+  getTrackingData = (session) => {
+    return this.db.doc(`visitors/${session}`);
+  };
+
+// Add Visitors
+doTracking = (data) => {
+  const chatUsersList = this.db.collection("actions").doc('tracking');
+  return chatUsersList.set(
+    data,
+    { merge: true }
+  );
+};
 
 
   // *** Auth API ***
